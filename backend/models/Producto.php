@@ -6,16 +6,43 @@
             $this->conn = $conexion;
         }
         public function obtenerPorId($id) {
+            $sql = "SELECT * FROM producto WHERE idProducto = ?";
+            $resultado = $this->conn->prepare($sql);
+            $resultado->bind_param("i",$id);
+            $resultado->execute();
+            return $resultado->get_result()->fetch_assoc(); //devuelve un array
         }
         public function obtenerTodos() {
             $sql = "SELECT * FROM producto";
             $resultado = $this->conn->query($sql);
-            return $resultado->fetch_assoc();
-
+            return $resultado->fetch_all(MYSQLI_ASSOC); //devuelve un arra
         }
         public function crear($datos) {
+            $sql = "INSERT INTO producto (nombre, precio, stock) VALUES (?,?,?)";
+            $resultado = $this->conn->prepare($sql);
+            $resultado->bind_param("sdi",
+            $datos['nombre'],
+            $datos['precio'],
+            $datos['stock']);
+            $resultado->execute();
+            return $resultado->insert_id;
         }
         public function actualizar($id, $datos) {
+            $sql = "UPDATE producto SET nombre = ?, precio = ?, stock = ? WHERE idProducto = ?";
+            $resultado = $this->conn->prepare($sql);
+            $resultado->bind_param("sdii",
+            $datos['nombre'],
+            $datos['precio'],
+            $datos['stock'], $id);
+            $resultado->execute();
+            return $resultado->affected_rows;
+        }
+        public function eliminar($id) {
+            $sql = "DELETE FROM producto WHERE idProducto = ?";
+            $resultado = $this->conn->prepare($sql);
+            $resultado->bind_param("i",$id);
+            $resultado->execute();
+            return $resultado->affected_rows;
         }
     }
 ?>

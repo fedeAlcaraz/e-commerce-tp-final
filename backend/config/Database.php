@@ -12,5 +12,19 @@ try{
     echo "Error de db: " . $error->getMessage();
 }
 $productoModel = new Producto($conn);
+$insertProducto = [
+    "nombre" => "pity",
+    "precio" => 100,
+    "stock" => 1
+];
+$updateProducto = [
+    "nombre" => "fede",
+    "precio" => 2.50,
+    "stock" => 2
+];
 print_r($productoModel->obtenerTodos());
+print_r($productoModel->obtenerPorId(4));
+//echo $productoModel->crear($insertProducto);
+//echo $productoModel->actualizar(1,$updateProducto);
+echo $productoModel->eliminar();
 ?>
