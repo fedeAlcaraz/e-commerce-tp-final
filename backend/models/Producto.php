@@ -1,9 +1,8 @@
 <?php
-    require_once __DIR__ . "/../config/Database.php";
     class Producto {
         private $conn;
-        public function __construct($conexion) {
-            $this->conn = $conexion;
+        public function __construct() {
+            $this->conn = require __DIR__ . "/../config/Database.php";
         }
         public function obtenerPorId($id) {
             $sql = "SELECT * FROM producto WHERE idProducto = ?";
