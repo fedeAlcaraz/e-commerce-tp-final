@@ -36,6 +36,30 @@
             $resultado->execute();
             return $resultado->affected_rows;
         }
+        public function actualizarPatch($id, $datos){
+            $sql = "UPDATE producto SET ";
+            $valores = [];
+            $tipos = "";
+            foreach ($datos as $campo => $valor) {
+                $sql .= "$campo = ?, ";
+                $valores[] = $valor;
+                if (is_int($valor)) {
+                    $tipos .= "i";
+                } elseif (is_float($valor)) {
+                    $tipos .= "d";
+                } else {
+                $tipos .= "s";
+                }
+            }
+            $sql = rtrim($sql, ", "); //aca borramos la ultima coma y espacio q sobra
+            $sql .= " WHERE idProducto = ?"; //terminamos de concatenar la consulta
+            $valores[] = $id; //agregamos el id al final de los valores
+            $tipos .= "i"; //agregamos el tipo de dato del id
+            $resultado = $this->conn->prepare($sql); 
+            $resultado->bind_param($tipos, ...$valores); //los 3 puntos es para enviar el array como parametros individuales
+            $resultado->execute();
+            return $resultado->affected_rows;
+        }
         public function eliminar($id) {
             $sql = "DELETE FROM producto WHERE idProducto = ?";
             $resultado = $this->conn->prepare($sql);

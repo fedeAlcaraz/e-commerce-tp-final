@@ -1,6 +1,6 @@
 RewriteEngine On
 
-RewriteBase /tp_final/e-commerce-tp-final/
+RewriteBase /backend/e-commerce-tp-final/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

@@ -3,7 +3,7 @@ require_once __DIR__ . "/controllers/ProductoController.php";
 header("Content-Type: application/json; charset=UTF-8");
 $metodo = $_SERVER["REQUEST_METHOD"];
 $ruta = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-$base = "/tp_final/e-commerce-tp-final";
+$base = "/backend/e-commerce-tp-final";
 $ruta = substr($ruta, strlen($base));
 $ruta = preg_replace("#^/api/?#", "", $ruta);
 $segmentos = explode("/", trim($ruta, "/"));
@@ -29,6 +29,10 @@ switch ($recurso) {
                 $datos = json_decode(file_get_contents("php://input"), true);
                 $controller->actualizarProducto($id, $datos);
                 break;
+            case "PATCH":
+                $datos = json_decode(file_get_contents("php://input"), true);
+                $controller->actualizarPatch($id, $datos);
+        break;
             case "DELETE":
                 $controller->eliminarProducto($id);
                 break;
