@@ -7,7 +7,6 @@ $password = "";
 $base_de_datos = "natura";
 try{
     $conn = new mysqli($servidor, $usuario, $password, $base_de_datos);
-    echo "La conexion funciona re nazi amigo";
 }catch(mysqli_sql_exception $error){
     echo "Error de db: " . $error->getMessage();
 }

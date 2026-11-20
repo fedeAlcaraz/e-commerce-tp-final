@@ -16,7 +16,7 @@
             $resultado = $this->conn->query($sql);
             return $resultado->fetch_all(MYSQLI_ASSOC); //devuelve un arra
         }
-        public function crear($datos) {
+        public function crearProducto($datos) {
             $sql = "INSERT INTO producto (nombre, precio, stock) VALUES (?,?,?)";
             $resultado = $this->conn->prepare($sql);
             $resultado->bind_param("sdi",
