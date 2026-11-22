@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/controllers/ProductoController.php";
 require_once __DIR__ . "/controllers/CategoriaController.php";
+require_once __DIR__ . "/controllers/LineaController.php";
 header("Content-Type: application/json; charset=UTF-8");
 $metodo = $_SERVER["REQUEST_METHOD"];
 $ruta = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
@@ -18,6 +19,9 @@ switch ($recurso) {
         break;
     case "categorias":
         $controller = new CategoriaController();
+        break;
+    case "lineas":
+        $controller = new LineaController();
         break;
     default:
         http_response_code(404);

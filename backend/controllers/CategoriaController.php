@@ -28,7 +28,7 @@
         http_response_code(201);
         echo json_encode([
             "mensaje" => "categoria creada correctamente",
-            "idcategoria" => $resultado], JSON_UNESCAPED_UNICODE);
+            "idCategoria" => $resultado], JSON_UNESCAPED_UNICODE);
         exit;
     }
     public function actualizar($id, $datos) {
