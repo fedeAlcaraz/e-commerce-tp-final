@@ -23,15 +23,15 @@
         echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
         exit;
     }
-    public function crearProducto($datos) {
-        $resultado = $this->producto->crearProducto($datos);
+    public function crear($datos) {
+        $resultado = $this->producto->crear($datos);
         http_response_code(201);
         echo json_encode([
             "mensaje" => "Producto creado correctamente",
             "idProducto" => $resultado], JSON_UNESCAPED_UNICODE);
         exit;
     }
-    public function actualizarProducto($id, $datos) {
+    public function actualizar($id, $datos) {
         $resultado = $this->producto->actualizar($id, $datos);
         if (!$resultado) {
             http_response_code(404);
@@ -58,7 +58,7 @@
         echo json_encode(["mensaje" => "Producto actualizado parcialmente"], JSON_UNESCAPED_UNICODE);
         exit;
     }
-    public function eliminarProducto($id) {
+    public function eliminar($id) {
         $resultado = $this->producto->eliminar($id);
         if ($resultado === 0) {
             http_response_code(404);
