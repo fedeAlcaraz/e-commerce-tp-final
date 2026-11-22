@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2026 a las 13:42:47
+-- Tiempo de generación: 22-11-2026 a las 10:16:17
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -256,8 +256,7 @@ CREATE TABLE `usuario` (
   `dni` varchar(8) NOT NULL,
   `email` varchar(254) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `fecha_nacimiento` date NOT NULL,
-  `rol` enum('cliente','admin') NOT NULL
+  `fecha_nacimiento` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -371,7 +370,7 @@ ALTER TABLE `carrito`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `direccion`
@@ -389,7 +388,7 @@ ALTER TABLE `familia_olfativa`
 -- AUTO_INCREMENT de la tabla `linea`
 --
 ALTER TABLE `linea`
-  MODIFY `idLinea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idLinea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `localidad`
@@ -413,7 +412,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_piel`

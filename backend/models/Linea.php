@@ -9,12 +9,12 @@
             $resultado = $this->conn->prepare($sql);
             $resultado->bind_param("i",$id);
             $resultado->execute();
-            return $resultado->get_result()->fetch_assoc(); //devuelve un array
+            return $resultado->get_result()->fetch_assoc();
         }
         public function obtenerTodos() {
             $sql = "SELECT * FROM linea";
             $resultado = $this->conn->query($sql);
-            return $resultado->fetch_all(MYSQLI_ASSOC); //devuelve un arra
+            return $resultado->fetch_all(MYSQLI_ASSOC); 
         }
         public function crear($datos) {
             $sql = "INSERT INTO linea (nombre) VALUES (?)";

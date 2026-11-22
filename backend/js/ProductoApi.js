@@ -14,7 +14,7 @@ export class ProductoApi {
     static actualizar(id, datos) {
         return api.request("/productos/" + id, "PUT", datos);
     }
-    static actualizarParcial(id, datos) {
+    static actualizarPatch(id, datos) {
         return api.request("/productos/" + id, "PATCH", datos);
     }
     static eliminar(id) {
