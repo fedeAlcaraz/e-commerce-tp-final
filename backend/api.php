@@ -5,6 +5,7 @@ require_once __DIR__ . "/controllers/LineaController.php";
 require_once __DIR__ . "/controllers/UsuarioController.php";
 require_once __DIR__ . "/controllers/DireccionController.php";
 require_once __DIR__ . "/controllers/LocalidadController.php";
+require_once __DIR__ . "/controllers/CarritoController.php";
 header("Content-Type: application/json; charset=UTF-8");
 $metodo = $_SERVER["REQUEST_METHOD"];
 $ruta = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
@@ -34,6 +35,9 @@ switch ($recurso) {
         break;
     case "localidades":
         $controller = new LocalidadController();
+        break;
+    case "carritos":
+        $controller = new CarritoController();
         break;
     default:
         http_response_code(404);

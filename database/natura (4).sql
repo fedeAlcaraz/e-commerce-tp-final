@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2026 a las 10:16:17
+-- Tiempo de generación: 22-11-2026 a las 12:37:30
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -31,6 +31,14 @@ CREATE TABLE `carrito` (
   `idCarrito` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `carrito`
+--
+
+INSERT INTO `carrito` (`idCarrito`, `idUsuario`) VALUES
+(4, 1),
+(3, 5);
 
 -- --------------------------------------------------------
 
@@ -100,6 +108,18 @@ CREATE TABLE `direccion` (
   `idLocalidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `direccion`
+--
+
+INSERT INTO `direccion` (`idDireccion`, `idUsuario`, `calle`, `altura`, `piso`, `dpto`, `cp`, `idLocalidad`) VALUES
+(1, 1, 'San Martin', '125', NULL, NULL, '8000', 1),
+(2, 1, 'Belgrano', '450', '2', 'A', '8000', 1),
+(3, 1, 'Mitre', '780', NULL, NULL, '8000', 1),
+(4, 1, 'San Martin', '999', '1', 'B', '8000', 1),
+(5, 1, 'Belgrano', '450', '2', 'A', '8000', 1),
+(6, 1, 'Mitre', '780', NULL, NULL, '8000', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -151,6 +171,13 @@ CREATE TABLE `localidad` (
   `idLocalidad` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `localidad`
+--
+
+INSERT INTO `localidad` (`idLocalidad`, `nombre`) VALUES
+(1, 'suarez');
 
 -- --------------------------------------------------------
 
@@ -260,6 +287,17 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`idUsuario`, `nombre`, `apellido`, `dni`, `email`, `password`, `fecha_nacimiento`) VALUES
+(1, 'Juan', 'Perez', '30111222', 'juan.perez@example.com', '$2y$10$vJ1AaC5XBKLr6uDpZFw7EO1mJitMY.WZdWnF1/NAwwi7PyMvBZagO', '1998-05-12'),
+(2, 'Maria', 'Gomez', '30222333', 'maria.gomez@example.com', '$2y$10$14XrCFhYH4iBNuyWTsj6GeujUaG///v5RAI5Nm5iEatekSQjVGkY.', '2000-08-21'),
+(3, 'Lucas', 'Fernandez', '30333444', 'lucas.fernandez@example.com', '$2y$10$mIfyYb4cOxuk.pmkPbL2OOS1oVR..PildtJGDE2c5SN96PdyYrEBu', '1999-02-15'),
+(4, 'Sofia', 'Rodriguez', '30444555', 'sofia.rodriguez@example.com', '$2y$10$riNf.1o89eIhCyCOy87oG.5tszysW0rU/aH3xY8J5IbKPfh6YiNPG', '2001-11-03'),
+(5, 'Mateo', 'Lopez', '30555666', 'mateo.lopez@example.com', '$2y$10$goW0.lQvksAW7Lzg2KpgY.VUHaU3mCwxvAexgiHRgY2FZTfX2NRAq', '1997-07-29');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -268,7 +306,7 @@ CREATE TABLE `usuario` (
 --
 ALTER TABLE `carrito`
   ADD PRIMARY KEY (`idCarrito`),
-  ADD KEY `fk_carrito_usuario` (`idUsuario`);
+  ADD UNIQUE KEY `uq_carrito_usuario` (`idUsuario`);
 
 --
 -- Indices de la tabla `categoria`
@@ -364,7 +402,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
@@ -376,7 +414,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `idDireccion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDireccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `familia_olfativa`
@@ -394,7 +432,7 @@ ALTER TABLE `linea`
 -- AUTO_INCREMENT de la tabla `localidad`
 --
 ALTER TABLE `localidad`
-  MODIFY `idLocalidad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idLocalidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
@@ -424,7 +462,7 @@ ALTER TABLE `tipo_piel`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
