@@ -4,6 +4,7 @@ require_once __DIR__ . "/controllers/CategoriaController.php";
 require_once __DIR__ . "/controllers/LineaController.php";
 require_once __DIR__ . "/controllers/UsuarioController.php";
 require_once __DIR__ . "/controllers/DireccionController.php";
+require_once __DIR__ . "/controllers/LocalidadController.php";
 header("Content-Type: application/json; charset=UTF-8");
 $metodo = $_SERVER["REQUEST_METHOD"];
 $ruta = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
@@ -31,14 +32,15 @@ switch ($recurso) {
     case "direcciones":
         $controller = new DireccionController();
         break;
+    case "localidades":
+        $controller = new LocalidadController();
+        break;
     default:
         http_response_code(404);
         echo json_encode(["error" => "Recurso no encontrado"]);
         exit;
 }
-
 $datos = json_decode(file_get_contents("php://input"), true);
-
 switch ($metodo) {
     case "GET":
         if ($id === "usuario" && method_exists($controller, "obtenerPorIdUsuario")) {
@@ -49,11 +51,9 @@ switch ($metodo) {
         $controller->obtenerTodos();
         }
         break;
-
     case "POST":
         $controller->crear($datos);
         break;
-
     case "PUT":
         $controller->actualizar($id, $datos);
         break;
