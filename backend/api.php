@@ -6,6 +6,7 @@ require_once __DIR__ . "/controllers/UsuarioController.php";
 require_once __DIR__ . "/controllers/DireccionController.php";
 require_once __DIR__ . "/controllers/LocalidadController.php";
 require_once __DIR__ . "/controllers/CarritoController.php";
+require_once __DIR__ . "/controllers/DetalleCarritoController.php";
 header("Content-Type: application/json; charset=UTF-8");
 $metodo = $_SERVER["REQUEST_METHOD"];
 $ruta = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
@@ -37,7 +38,11 @@ switch ($recurso) {
         $controller = new LocalidadController();
         break;
     case "carritos":
-        $controller = new CarritoController();
+        if ($id === "productos") {
+            $controller = new DetalleCarritoController();
+            } else {
+            $controller = new CarritoController();
+        }
         break;
     default:
         http_response_code(404);
@@ -47,7 +52,9 @@ switch ($recurso) {
 $datos = json_decode(file_get_contents("php://input"), true);
 switch ($metodo) {
     case "GET":
-        if ($id === "usuario" && method_exists($controller, "obtenerPorIdUsuario")) {
+        if ($controller instanceof DetalleCarritoController) {
+        $controller->obtenerTodos($_GET['idCarrito'] ?? null);
+        } elseif ($id === "usuario" && method_exists($controller, "obtenerPorIdUsuario")) {
         $controller->obtenerPorIdUsuario($segmentos[2]);
         } elseif ($id !== null) {
         $controller->obtenerPorId($id);
@@ -62,7 +69,11 @@ switch ($metodo) {
         $controller->actualizar($id, $datos);
         break;
     case "PATCH":
-        if (method_exists($controller, "actualizarPatch")) {
+        if ($controller instanceof DetalleCarritoController) {
+        $idCarrito = $_GET['idCarrito'] ?? null;
+        $idProducto = $segmentos[2] ?? null;
+        $controller->actualizar($idCarrito, $idProducto, $datos);
+        } elseif (method_exists($controller, "actualizarPatch")) {
             $controller->actualizarPatch($id, $datos);
         } else {
             http_response_code(405);
@@ -70,7 +81,14 @@ switch ($metodo) {
         }
         break;
     case "DELETE":
+        if ($controller instanceof DetalleCarritoController) {
+        $idCarrito = $_GET['idCarrito'] ?? null;
+        $idProducto = $segmentos[2] ?? null;
+
+        $controller->eliminar($idCarrito, $idProducto);
+        } else {
         $controller->eliminar($id);
+        }
         break;
     default:
         http_response_code(405);

@@ -16,6 +16,17 @@
         echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
         exit;
     }
+    public function obtenerPorIdUsuario($id) {
+        $resultado = $this->carrito->obtenerPorIdUsuario($id);
+        if (empty($resultado)) {
+            http_response_code(404);
+            echo json_encode(["error" => "carrito no encontrado"]);
+            exit;
+        }
+        http_response_code(200);
+        echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
+        exit;
+    }
     public function crear($datos) {
         $resultado = $this->carrito->crear($datos);
         http_response_code(201);

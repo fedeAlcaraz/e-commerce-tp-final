@@ -1,5 +1,4 @@
 <?php
-//include __DIR__ . "/../models/Producto.php";
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $servidor = "localhost";
 $usuario = "root";
@@ -10,6 +9,5 @@ try{
 }catch(mysqli_sql_exception $error){
     echo "Error de db: " . $error->getMessage();
 }
-
 return $conn;
 ?>
