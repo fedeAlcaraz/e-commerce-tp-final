@@ -3,6 +3,7 @@ require_once __DIR__ . "/controllers/ProductoController.php";
 require_once __DIR__ . "/controllers/CategoriaController.php";
 require_once __DIR__ . "/controllers/LineaController.php";
 require_once __DIR__ . "/controllers/UsuarioController.php";
+require_once __DIR__ . "/controllers/DireccionController.php";
 header("Content-Type: application/json; charset=UTF-8");
 $metodo = $_SERVER["REQUEST_METHOD"];
 $ruta = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
@@ -27,6 +28,9 @@ switch ($recurso) {
     case "usuarios":
         $controller = new UsuarioController();
         break;
+    case "direcciones":
+        $controller = new DireccionController();
+        break;
     default:
         http_response_code(404);
         echo json_encode(["error" => "Recurso no encontrado"]);
@@ -37,10 +41,12 @@ $datos = json_decode(file_get_contents("php://input"), true);
 
 switch ($metodo) {
     case "GET":
-        if ($id !== null) {
-            $controller->obtenerPorId($id);
+        if ($id === "usuario" && method_exists($controller, "obtenerPorIdUsuario")) {
+        $controller->obtenerPorIdUsuario($segmentos[2]);
+        } elseif ($id !== null) {
+        $controller->obtenerPorId($id);
         } else {
-            $controller->obtenerTodos();
+        $controller->obtenerTodos();
         }
         break;
 
@@ -51,7 +57,6 @@ switch ($metodo) {
     case "PUT":
         $controller->actualizar($id, $datos);
         break;
-
     case "PATCH":
         if (method_exists($controller, "actualizarPatch")) {
             $controller->actualizarPatch($id, $datos);
