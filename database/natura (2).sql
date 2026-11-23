@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2026 a las 08:46:47
+-- Tiempo de generación: 23-11-2026 a las 10:01:05
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -202,6 +202,13 @@ CREATE TABLE `pago` (
   `estado` enum('pendiente','aprobado','rechazado') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `pago`
+--
+
+INSERT INTO `pago` (`idPago`, `idPedido`, `monto`, `medio_pago`, `estado`) VALUES
+(1, 3, 55000.00, 'transferencia', 'aprobado');
+
 -- --------------------------------------------------------
 
 --
@@ -221,7 +228,7 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`idPedido`, `idUsuario`, `estado`, `total`, `fecha`) VALUES
-(2, 1, 'pagado', 0.00, '2026-11-23 04:33:51'),
+(2, 1, 'pendiente', 0.00, '2026-11-23 04:33:51'),
 (3, 1, 'pagado', 55000.00, '2026-11-23 04:37:15');
 
 -- --------------------------------------------------------
@@ -379,6 +386,7 @@ ALTER TABLE `localidad`
 --
 ALTER TABLE `pago`
   ADD PRIMARY KEY (`idPago`),
+  ADD UNIQUE KEY `unique_pago_pedido` (`idPedido`),
   ADD KEY `idPedido` (`idPedido`);
 
 --
@@ -455,7 +463,7 @@ ALTER TABLE `localidad`
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `idPago` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`

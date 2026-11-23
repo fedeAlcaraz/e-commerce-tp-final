@@ -8,6 +8,7 @@ require_once __DIR__ . "/controllers/LocalidadController.php";
 require_once __DIR__ . "/controllers/CarritoController.php";
 require_once __DIR__ . "/controllers/DetalleCarritoController.php";
 require_once __DIR__ . "/controllers/PedidoController.php";
+require_once __DIR__ . "/controllers/PagoController.php";
 header("Content-Type: application/json; charset=UTF-8");
 $metodo = $_SERVER["REQUEST_METHOD"];
 $ruta = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
@@ -46,7 +47,14 @@ switch ($recurso) {
         }
         break;
     case "pedidos":
-        $controller = new PedidoController();
+        if (isset($segmentos[2]) && $segmentos[2] === "pago") {
+            $controller = new PagoController();
+        } else {
+            $controller = new PedidoController();
+        }
+        break;
+    case "pagos":
+        $controller = new PagoController();
         break;
     default:
         http_response_code(404);
@@ -60,6 +68,12 @@ switch ($metodo) {
         $controller->obtenerTodos($_GET['idCarrito'] ?? null);
         } elseif ($id === "usuario" && method_exists($controller, "obtenerPorIdUsuario")) {
         $controller->obtenerPorIdUsuario($segmentos[2]);
+        } elseif ($controller instanceof PagoController) {
+            if ($id !== null) {
+                $controller->obtenerPorId($id);
+            } else {
+                $controller->obtenerTodos();
+            } 
         } elseif ($controller instanceof PedidoController) {
             $idUsuario = $_GET['idUsuario'] ?? null;
             if (isset($segmentos[2]) && $segmentos[2] === "detalles") {
@@ -76,7 +90,9 @@ switch ($metodo) {
         }
         break;
     case "POST":
-        if ($controller instanceof PedidoController) {
+        if ($controller instanceof PagoController) {
+            $controller->crear($id, $datos);
+        } elseif ($controller instanceof PedidoController) {
             $idUsuario = $datos['idUsuario'] ?? null;
             $controller->crear($idUsuario);
         } else {
@@ -104,7 +120,7 @@ switch ($metodo) {
             $idProducto = $segmentos[2] ?? null;
             $controller->eliminar($idCarrito, $idProducto);
         } else {
-        $controller->eliminar($id);
+            $controller->eliminar($id);
         }
         break;
     default:
