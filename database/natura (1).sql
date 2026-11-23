@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2026 a las 12:37:30
+-- Tiempo de generación: 23-11-2026 a las 08:46:47
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -90,6 +90,15 @@ CREATE TABLE `detalle_pedido` (
   `cantidad` int(11) NOT NULL,
   `precio_unitario` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `detalle_pedido`
+--
+
+INSERT INTO `detalle_pedido` (`idPedido`, `idProducto`, `cantidad`, `precio_unitario`) VALUES
+(3, 4, 1, 10000.00),
+(3, 6, 2, 15000.00),
+(3, 7, 1, 15000.00);
 
 -- --------------------------------------------------------
 
@@ -206,6 +215,14 @@ CREATE TABLE `pedido` (
   `total` decimal(10,2) NOT NULL,
   `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`idPedido`, `idUsuario`, `estado`, `total`, `fecha`) VALUES
+(2, 1, 'pagado', 0.00, '2026-11-23 04:33:51'),
+(3, 1, 'pagado', 55000.00, '2026-11-23 04:37:15');
 
 -- --------------------------------------------------------
 
@@ -444,7 +461,7 @@ ALTER TABLE `pago`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`

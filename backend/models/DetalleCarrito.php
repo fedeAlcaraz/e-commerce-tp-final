@@ -18,8 +18,7 @@
             $sql = "INSERT INTO detalle_carrito (idCarrito, idProducto, cantidad)
                     VALUES (?, ?, ?)";
             $resultado = $this->conn->prepare($sql);
-            $resultado->bind_param(
-                "iii",
+            $resultado->bind_param("iii",
                 $datos['idCarrito'],
                 $datos['idProducto'],
                 $datos['cantidad']

@@ -7,6 +7,7 @@ require_once __DIR__ . "/controllers/DireccionController.php";
 require_once __DIR__ . "/controllers/LocalidadController.php";
 require_once __DIR__ . "/controllers/CarritoController.php";
 require_once __DIR__ . "/controllers/DetalleCarritoController.php";
+require_once __DIR__ . "/controllers/PedidoController.php";
 header("Content-Type: application/json; charset=UTF-8");
 $metodo = $_SERVER["REQUEST_METHOD"];
 $ruta = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
@@ -44,6 +45,9 @@ switch ($recurso) {
             $controller = new CarritoController();
         }
         break;
+    case "pedidos":
+        $controller = new PedidoController();
+        break;
     default:
         http_response_code(404);
         echo json_encode(["error" => "Recurso no encontrado"]);
@@ -56,6 +60,15 @@ switch ($metodo) {
         $controller->obtenerTodos($_GET['idCarrito'] ?? null);
         } elseif ($id === "usuario" && method_exists($controller, "obtenerPorIdUsuario")) {
         $controller->obtenerPorIdUsuario($segmentos[2]);
+        } elseif ($controller instanceof PedidoController) {
+            $idUsuario = $_GET['idUsuario'] ?? null;
+            if (isset($segmentos[2]) && $segmentos[2] === "detalles") {
+                $controller->obtenerDetalles($id, $idUsuario);
+            } elseif ($id !== null) {
+            $controller->obtenerPorId($id, $idUsuario);
+            } else {
+            $controller->obtenerTodos($idUsuario);
+            }
         } elseif ($id !== null) {
         $controller->obtenerPorId($id);
         } else {
@@ -63,7 +76,12 @@ switch ($metodo) {
         }
         break;
     case "POST":
+        if ($controller instanceof PedidoController) {
+            $idUsuario = $datos['idUsuario'] ?? null;
+            $controller->crear($idUsuario);
+        } else {
         $controller->crear($datos);
+        }
         break;
     case "PUT":
         $controller->actualizar($id, $datos);
@@ -82,10 +100,9 @@ switch ($metodo) {
         break;
     case "DELETE":
         if ($controller instanceof DetalleCarritoController) {
-        $idCarrito = $_GET['idCarrito'] ?? null;
-        $idProducto = $segmentos[2] ?? null;
-
-        $controller->eliminar($idCarrito, $idProducto);
+            $idCarrito = $_GET['idCarrito'] ?? null;
+            $idProducto = $segmentos[2] ?? null;
+            $controller->eliminar($idCarrito, $idProducto);
         } else {
         $controller->eliminar($id);
         }
