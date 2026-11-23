@@ -16,6 +16,13 @@
             $resultado = $this->conn->query($sql);
             return $resultado->fetch_all(MYSQLI_ASSOC);
         }
+        public function obtenerPorEmail($email) {
+            $sql = "SELECT idUsuario, email, password FROM usuario WHERE email = ?";
+            $resultado = $this->conn->prepare($sql);
+            $resultado->bind_param("s", $email);
+            $resultado->execute();
+            return $resultado->get_result()->fetch_assoc();
+        }
         public function crear($datos) {
             $sql = "INSERT INTO usuario (nombre, apellido, dni, email, password, fecha_nacimiento) 
             VALUES (?, ?, ?, ?, ?, ?)";

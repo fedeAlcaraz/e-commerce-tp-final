@@ -14,12 +14,12 @@
             $resultado->execute();
             return $resultado->get_result()->fetch_all(MYSQLI_ASSOC);
         }
-        public function crear($datos) {
+        public function crear($idCarrito, $datos) {
             $sql = "INSERT INTO detalle_carrito (idCarrito, idProducto, cantidad)
                     VALUES (?, ?, ?)";
             $resultado = $this->conn->prepare($sql);
             $resultado->bind_param("iii",
-                $datos['idCarrito'],
+                $idCarrito,
                 $datos['idProducto'],
                 $datos['cantidad']
             );

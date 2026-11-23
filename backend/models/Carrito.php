@@ -18,11 +18,11 @@
             $resultado->execute();
             return $resultado->get_result()->fetch_assoc();
         }
-        public function crear($datos) {
+        public function crear($idUsuario) {
             $sql = "INSERT INTO carrito (idUsuario) VALUES (?)";
             $resultado = $this->conn->prepare($sql);
             $resultado->bind_param("i",
-            $datos['idUsuario']);
+            $idUsuario);
             $resultado->execute();
             return $resultado->insert_id;
         }

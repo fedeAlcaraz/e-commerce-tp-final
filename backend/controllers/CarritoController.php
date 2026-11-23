@@ -27,8 +27,8 @@
         echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
         exit;
     }
-    public function crear($datos) {
-        $resultado = $this->carrito->crear($datos);
+    public function crear($idUsuario) {
+        $resultado = $this->carrito->crear($idUsuario);
         http_response_code(201);
         echo json_encode([
             "mensaje" => "carrito creado correctamente",

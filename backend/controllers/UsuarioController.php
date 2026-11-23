@@ -23,6 +23,17 @@
         echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
         exit;
     }
+    public function obtenerPorEmail($email) {
+        $resultado = $this->usuario->obtenerPorEmail($email);
+        if (!$resultado) {
+            http_response_code(404);
+            echo json_encode(["error" => "usuario no encontrado"]);
+            exit;
+        }
+        http_response_code(200);
+        echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
+        exit;
+    }
     public function crear($datos) {
         $resultado = $this->usuario->crear($datos);
         http_response_code(201);

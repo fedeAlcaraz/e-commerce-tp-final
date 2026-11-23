@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . "/config/session.php";
+require_once __DIR__ . "/controllers/AuthController.php";
+
 require_once __DIR__ . "/controllers/ProductoController.php";
 require_once __DIR__ . "/controllers/CategoriaController.php";
 require_once __DIR__ . "/controllers/LineaController.php";
@@ -56,6 +59,9 @@ switch ($recurso) {
     case "pagos":
         $controller = new PagoController();
         break;
+    case "auth":
+        $controller = new AuthController();
+        break;
     default:
         http_response_code(404);
         echo json_encode(["error" => "Recurso no encontrado"]);
@@ -65,9 +71,17 @@ $datos = json_decode(file_get_contents("php://input"), true);
 switch ($metodo) {
     case "GET":
         if ($controller instanceof DetalleCarritoController) {
-        $controller->obtenerTodos($_GET['idCarrito'] ?? null);
+        $controller->obtenerTodos($_SESSION['idCarrito'] ?? null);
         } elseif ($id === "usuario" && method_exists($controller, "obtenerPorIdUsuario")) {
         $controller->obtenerPorIdUsuario($segmentos[2]);
+        } elseif ($controller instanceof CarritoController) {
+            $idUsuario = $_SESSION['idUsuario'] ?? null;
+            if ($idUsuario === null) {
+                http_response_code(401);
+                echo json_encode(["error" => "debes iniciar sesión"]);
+                exit;
+            }
+        $controller->obtenerPorIdUsuario($idUsuario);
         } elseif ($controller instanceof PagoController) {
             if ($id !== null) {
                 $controller->obtenerPorId($id);
@@ -75,7 +89,12 @@ switch ($metodo) {
                 $controller->obtenerTodos();
             } 
         } elseif ($controller instanceof PedidoController) {
-            $idUsuario = $_GET['idUsuario'] ?? null;
+            $idUsuario = $_SESSION['idUsuario'] ?? null;
+            if ($idUsuario === null) {
+                http_response_code(401);
+                echo json_encode(["error" => "no iniciaste sesion pa"]);
+            exit;
+            }
             if (isset($segmentos[2]) && $segmentos[2] === "detalles") {
                 $controller->obtenerDetalles($id, $idUsuario);
             } elseif ($id !== null) {
@@ -85,15 +104,38 @@ switch ($metodo) {
             }
         } elseif ($id !== null) {
         $controller->obtenerPorId($id);
-        } else {
+        } elseif(method_exists($controller,"obtenerPorEmail")) {
+            $controller->obtenerPorEmail($email);
+        }else {
         $controller->obtenerTodos();
         }
         break;
     case "POST":
-        if ($controller instanceof PagoController) {
+        if ($controller instanceof AuthController) {
+            if ($id === "login") {
+            $controller->iniciarSesion($datos);
+            } 
+        } elseif ($controller instanceof CarritoController) {
+            $idUsuario = $_SESSION['idUsuario'] ?? null;
+            if ($idUsuario === null) {
+                http_response_code(401);
+                echo json_encode(["error" => "inicia sesion pa"]);
+                exit;
+            }
+            $controller->crear($idUsuario);
+        } elseif ($controller instanceof DetalleCarritoController) {
+            $idCarrito = $_SESSION['idCarrito'] ?? null;
+            $controller->crear($idCarrito, $datos);
+
+        } elseif ($controller instanceof PagoController) {
             $controller->crear($id, $datos);
         } elseif ($controller instanceof PedidoController) {
-            $idUsuario = $datos['idUsuario'] ?? null;
+            $idUsuario = $_SESSION['idUsuario'] ?? null;
+            if ($idUsuario === null) {
+                http_response_code(401);
+                echo json_encode(["error" => "inicia sesion pa"]);
+                exit;
+            }
             $controller->crear($idUsuario);
         } else {
         $controller->crear($datos);
@@ -104,7 +146,7 @@ switch ($metodo) {
         break;
     case "PATCH":
         if ($controller instanceof DetalleCarritoController) {
-        $idCarrito = $_GET['idCarrito'] ?? null;
+        $idCarrito = $_SESSION['idCarrito'] ?? null;
         $idProducto = $segmentos[2] ?? null;
         $controller->actualizar($idCarrito, $idProducto, $datos);
         } elseif (method_exists($controller, "actualizarPatch")) {
@@ -116,7 +158,7 @@ switch ($metodo) {
         break;
     case "DELETE":
         if ($controller instanceof DetalleCarritoController) {
-            $idCarrito = $_GET['idCarrito'] ?? null;
+            $idCarrito = $_SESSION['idCarrito'] ?? null;
             $idProducto = $segmentos[2] ?? null;
             $controller->eliminar($idCarrito, $idProducto);
         } else {
@@ -125,6 +167,6 @@ switch ($metodo) {
         break;
     default:
         http_response_code(405);
-        echo json_encode(["error" => "Método no permitido"]);
+        echo json_encode(["error" => "Método no permitido / ruta no encontrada"]);
         break;
 }
