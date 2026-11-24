@@ -1,0 +1,8 @@
+RewriteEngine On
+
+RewriteBase /backend/e-commerce-tp-final/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^api(/.*)?$ backend/api.php [QSA,L]
