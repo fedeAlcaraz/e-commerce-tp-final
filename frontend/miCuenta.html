@@ -1,66 +1,132 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi cuenta - Natura</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#FAF9F5">
+    <title>Mi cuenta | Natura</title>
+    <link rel="stylesheet" href="css/miCuenta.css">
 </head>
-<body>
-<header>
-        <div class="identidad">
-            <a href="index.html">Natura</a>
-        </div>
-        <nav aria-label="Navegación principal">
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="#categorias">Categorías</a></li>
-                <li><a href="#productos">Productos</a></li>
-            </ul>
-        </nav>
-        <div class="acciones-usuario">
-            <form action="#" method="GET">
-                <label for="busqueda">Buscar productos</label>
-                <input
-                    type="search"
-                    id="busqueda"
-                    name="buscar"
-                    placeholder="¿Qué estás buscando?"
-                >
-                <button type="submit">Buscar</button>
-            </form>
-            <a href="login.html">Iniciar sesión</a>
-            <a href="carrito.html">Carrito</a>
-            <a href="pedidos.html">Pedidos</a>
-        </div>
-    </header>
-    <main>
-        <h1>Mi cuenta</h1>
-        <section id="datos-usuario">
-            <h2>Mis datos personales</h2>
 
-            <div id="informacion-usuario">
+<body>
+    <header class="encabezado">
+        <div class="contenedor encabezado-contenido">
+
+            <div class="identidad">
+                <a href="index.html">Natura<span>.</span></a>
             </div>
-        </section>
-        <section id="opciones-cuenta">
-            <h2>Mi actividad</h2>
-            <nav>
+
+            <nav class="navegacion" aria-label="Navegación principal">
                 <ul>
-                    <li>
-                        <a href="pedido.html">Mis pedidos</a>
-                    </li>
-                    <li>
-                        <a href="carrito.html">Mi carrito</a>
-                    </li>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#categorias">Categorías</a></li>
+                    <li><a href="index.html#productos">Productos</a></li>
                 </ul>
             </nav>
-        </section>
-        <section id="configuracion-cuenta">
-            <h2>Configuración</h2>
 
-            <a href="editarCuenta.html">Editar mis datos</a>
-            <button id="cerrar-sesion">Cerrar sesión</button>
-        </section>
+            <div class="acciones-usuario">
+                <form class="buscador" action="#" method="GET">
+                    <input
+                        type="search"
+                        id="busqueda"
+                        name="buscar"
+                        placeholder="¿Qué estás buscando?"
+                        aria-label="Buscar productos"
+                    >
+                    <button type="submit">Buscar</button>
+                </form>
+
+                <div class="enlaces-usuario">
+                    <a href="login.html">Iniciar sesión</a>
+                    <a href="carrito.html">Carrito</a>
+                    <a href="pedidos.html">Pedidos</a>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <main class="contenedor-mi-cuenta">
+        <div class="encabezado-pagina">
+            <span class="etiqueta">TU ESPACIO PERSONAL</span>
+            <h1>Mi cuenta</h1>
+            <p>Consultá tus datos y administrá tu actividad en Natura.</p>
+        </div>
+
+        <div class="contenido-cuenta">
+
+            <section id="datos-usuario" class="tarjeta-cuenta">
+                <div class="encabezado-tarjeta">
+                    <div>
+                        <span class="icono-seccion">01</span>
+                        <h2>Mis datos personales</h2>
+                    </div>
+
+                    <a href="editarCuenta.html" class="enlace-editar">
+                        Editar datos
+                    </a>
+                </div>
+
+                <div id="informacion-usuario" class="informacion-usuario">
+                    <!-- Los datos del usuario se cargan mediante JavaScript -->
+                </div>
+            </section>
+
+            <section id="opciones-cuenta" class="tarjeta-cuenta">
+                <div class="encabezado-tarjeta">
+                    <div>
+                        <span class="icono-seccion">02</span>
+                        <h2>Mi actividad</h2>
+                    </div>
+                </div>
+
+                <div class="opciones-actividad">
+                    <a href="pedidos.html" class="opcion-cuenta">
+                        <div>
+                            <h3>Mis pedidos</h3>
+                            <p>Consultá tus compras y su estado.</p>
+                        </div>
+                        <span class="flecha">→</span>
+                    </a>
+
+                    <a href="carrito.html" class="opcion-cuenta">
+                        <div>
+                            <h3>Mi carrito</h3>
+                            <p>Revisá los productos que querés comprar.</p>
+                        </div>
+                        <span class="flecha">→</span>
+                    </a>
+                </div>
+            </section>
+            <section id="configuracion-cuenta" class="tarjeta-cuenta">
+                <div class="encabezado-tarjeta">
+                    <div>
+                        <span class="icono-seccion">03</span>
+                        <h2>Configuración</h2>
+                    </div>
+                </div>
+
+                <div class="configuracion-contenido">
+                    <div>
+                        <h3>Sesión</h3>
+                        <p>Cerrá tu sesión actual de Natura.</p>
+                    </div>
+
+                    <button type="button" id="cerrar-sesion">
+                        Cerrar sesión
+                    </button>
+                </div>
+            </section>
+
+        </div>
     </main>
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <a href="index.html" class="logo-pie">Natura<span>.</span></a>
+            <p>Una forma más natural de cuidarte.</p>
+        </div>
+    </footer>
     <script type="module" src="./js/MiCuenta/MostrarUsuario.js"></script>
 </body>
 </html>

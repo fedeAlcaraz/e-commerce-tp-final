@@ -1,107 +1,37 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar cuenta - Natura</title>
-</head>
-<body>
-    <header>
-        <div class="identidad">
-            <a href="index.html">Natura</a>
-        </div>
+<div class="opcion-pago">
+    <input
+        type="radio"
+        id="pago-efectivo"
+        name="medio_pago"
+        value="efectivo"
+        required
+    >
+    <label for="pago-efectivo">
+        <span class="informacion-pago">
+            <span class="nombre-pago">Efectivo</span>
+            <span class="descripcion-pago">
+                Pago en efectivo al momento de la entrega.
+            </span>
+        </span>
+        <span class="indicador-pago"></span>
+    </label>
+</div>
 
-        <nav aria-label="Navegación principal">
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="#categorias">Categorías</a></li>
-                <li><a href="#productos">Productos</a></li>
-            </ul>
-        </nav>
+<div class="opcion-pago">
+    <input
+        type="radio"
+        id="pago-transferencia"
+        name="medio_pago"
+        value="transferencia"
+    >
 
-        <div class="acciones-usuario">
-            <form action="#" method="GET">
-                <label for="busqueda">Buscar productos</label>
-                <input
-                    type="search"
-                    id="busqueda"
-                    name="buscar"
-                    placeholder="¿Qué estás buscando?"
-                >
-                <button type="submit">Buscar</button>
-            </form>
-
-            <a href="login.html">Iniciar sesión</a>
-            <a href="carrito.html">Carrito</a>
-            <a href="pedidos.html">Pedidos</a>
-        </div>
-    </header>
-
-    <main>
-        <h1>Editar mi cuenta</h1>
-
-        <section aria-labelledby="titulo-datos">
-            <h2 id="titulo-datos">Mis datos personales</h2>
-
-            <form id="formulario-editar-cuenta">
-                <div>
-                    <label for="nombre">Nombre</label>
-                    <input
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        required
-                    >
-                </div>
-
-                <div>
-                    <label for="apellido">Apellido</label>
-                    <input
-                        type="text"
-                        id="apellido"
-                        name="apellido"
-                        required
-                    >
-                </div>
-
-                <div>
-                    <label for="dni">DNI</label>
-                    <input
-                        type="text"
-                        id="dni"
-                        name="dni"
-                        required
-                    >
-                </div>
-
-                <div>
-                    <label for="email">Correo electrónico</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                    >
-                </div>
-
-                <div>
-                    <label for="fecha-nacimiento">Fecha de nacimiento</label>
-                    <input
-                        type="date"
-                        id="fecha-nacimiento"
-                        name="fecha_nacimiento"
-                        required
-                    >
-                </div>
-
-                <button type="submit">Guardar cambios</button>
-                <a href="MiCuenta.html">Cancelar</a>
-            </form>
-
-            <p id="mensaje-resultado" role="status"></p>
-        </section>
-    </main>
-
-    <script type="module" src="./js/MiCuenta/EditarCuenta.js"></script>
-</body>
-</html>
+    <label for="pago-transferencia">
+        <span class="informacion-pago">
+            <span class="nombre-pago">Transferencia bancaria</span>
+            <span class="descripcion-pago">
+                Realizá una transferencia para abonar tu pedido.
+            </span>
+        </span>
+        <span class="indicador-pago"></span>
+    </label>
+</div>

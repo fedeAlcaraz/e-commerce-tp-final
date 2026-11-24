@@ -1,15 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Finalizar compra | Natura</title>
+    <link rel="stylesheet" href="./css/pago.css">
 </head>
+
 <body>
-    <header>
+    <header class="encabezado">
         <div class="identidad">
             <a href="index.html">Natura</a>
         </div>
+
         <nav aria-label="Navegación principal">
             <ul>
                 <li><a href="index.html">Inicio</a></li>
@@ -19,53 +24,102 @@
                 <li><a href="index.html#nosotros">Nosotros</a></li>
             </ul>
         </nav>
+
         <div class="acciones-usuario">
             <a href="login.html">Mi cuenta</a>
             <a href="carrito.html">Mi carrito</a>
         </div>
     </header>
-    <main>
-        <h1>Finalizar compra</h1>
-        <section id="detalle-pedido">
-            <h2>Detalle del pedido</h2>
-            <div id="productos-pedido">
-            </div>
-            <p>
-                Total:
-                <span id="total-pedido">$0</span>
-            </p>
-        </section>
-        <section id="seleccion-pago">
-            <h2>Medio de pago</h2>
-            <form id="formulario-pago">
-                <fieldset>
-                    <legend>Seleccioná cómo querés pagar</legend>
+
+    <main class="contenedor-compra">
+        <div class="encabezado-pagina">
+            <p class="etiqueta-seccion">TU PEDIDO</p>
+            <h1>Finalizar compra</h1>
+            <p>Un último paso para completar tu compra.</p>
+        </div>
+
+        <div class="contenido-compra">
+            <section id="detalle-pedido" class="panel-compra">
+                <div class="titulo-panel">
+                    <div class="numero-paso">01</div>
                     <div>
-                        <input
-                            type="radio"
-                            id="pago-efectivo"
-                            name="medio_pago"
-                            value="efectivo"
-                            required
-                        >
-                        <label for="pago-efectivo">Efectivo</label>
+                        <h2>Detalle del pedido</h2>
+                        <p>Revisá los productos antes de confirmar.</p>
                     </div>
+                </div>
+
+                <div id="productos-pedido" class="productos-pedido">
+                </div>
+
+                <div class="resumen-total">
+                    <p>Total de la compra</p>
+                    <p id="total-pedido">$0</p>
+                </div>
+            </section>
+
+            <section id="seleccion-pago" class="panel-compra">
+                <div class="titulo-panel">
+                    <div class="numero-paso">02</div>
                     <div>
-                        <input
-                            type="radio"
-                            id="pago-transferencia"
-                            name="medio_pago"
-                            value="transferencia"
-                        >
-                        <label for="pago-transferencia">Transferencia bancaria</label>
+                        <h2>Medio de pago</h2>
+                        <p>Seleccioná cómo querés abonar.</p>
                     </div>
-                </fieldset>
-                <button type="submit">Confirmar pedido</button>
-            </form>
-            <a href="carrito.html">Volver al carrito</a>
-        </section>
+                </div>
+
+                <form id="formulario-pago">
+                    <fieldset class="opciones-pago">
+                        <legend>Elegí tu método de pago</legend>
+
+                        <div class="opcion-pago">
+                            <input
+                                type="radio"
+                                id="pago-efectivo"
+                                name="medio_pago"
+                                value="efectivo"
+                                required
+                            >
+
+                            <label for="pago-efectivo">
+                                <div class="informacion-pago">
+                                    <p>Efectivo</p>
+                                    <p>Pago en efectivo al momento de la entrega.</p>
+                                </div>
+
+                                <div class="indicador-pago"></div>
+                            </label>
+                        </div>
+
+                        <div class="opcion-pago">
+                            <input
+                                type="radio"
+                                id="pago-transferencia"
+                                name="medio_pago"
+                                value="transferencia"
+                            >
+
+                            <label for="pago-transferencia">
+                                <div class="informacion-pago">
+                                    <p>Transferencia bancaria</p>
+                                    <p>Realizá una transferencia para abonar tu pedido.</p>
+                                </div>
+
+                                <div class="indicador-pago"></div>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="boton-confirmar">
+                        Confirmar pedido
+                    </button>
+                </form>
+
+                <a href="carrito.html" class="volver-carrito">Volver al carrito</a>
+            </section>
+        </div>
     </main>
+
     <script type="module" src="./js/pago/MostrarPedido.js"></script>
     <script type="module" src="./js/pago/HacerPago.js"></script>
 </body>
+
 </html>

@@ -6,7 +6,6 @@ async function mostrarCarrito() {
     productosCarrito.innerHTML = "";
     try {
         const productos = await DetalleCarritoApi.obtenerTodos();
-
         if (productos.length === 0) {
             productosCarrito.textContent = "Tu carrito está vacío.";
             return;

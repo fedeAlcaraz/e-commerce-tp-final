@@ -1,0 +1,270 @@
+:root {
+    --fondo: #FAF9F5;
+    --blanco: #FFFFFF;
+
+    --verde: #526B52;
+    --verde-oscuro: #344A38;
+    --verde-suave: #E8EDE4;
+
+    --beige: #F0E9DC;
+
+    --texto: #30352F;
+    --texto-secundario: #777D73;
+
+    --borde: #E7E6DE;
+
+    --radio: 12px;
+    --sombra: 0 8px 30px rgba(48, 53, 47, 0.07);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    background-color: var(--fondo);
+    color: var(--texto);
+
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.encabezado-login {
+    width: min(1150px, 90%);
+    margin: 0 auto;
+
+    min-height: 85px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: var(--verde-oscuro);
+
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: -1.5px;
+}
+
+.logo span {
+    color: var(--verde);
+}
+
+.volver-inicio {
+    color: var(--texto-secundario);
+    font-size: 13px;
+
+    transition: color 0.2s;
+}
+
+.volver-inicio:hover {
+    color: var(--verde);
+}
+
+.contenedor-login {
+    min-height: calc(100vh - 85px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+}
+
+.tarjeta-login {
+    width: 100%;
+    max-width: 440px;
+
+    background-color: var(--blanco);
+
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+
+    padding: 40px;
+
+    box-shadow: var(--sombra);
+}
+
+.encabezado-formulario {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.etiqueta {
+    display: inline-block;
+
+    color: var(--verde);
+
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+.encabezado-formulario h1 {
+    color: var(--verde-oscuro);
+
+    font-size: 30px;
+    letter-spacing: -1px;
+
+    margin-bottom: 8px;
+}
+
+.encabezado-formulario p {
+    color: var(--texto-secundario);
+    font-size: 14px;
+}
+
+#form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo label {
+    color: var(--texto);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.campo input {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    background-color: var(--fondo);
+
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+
+    color: var(--texto);
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.campo input::placeholder {
+    color: #A6AAA2;
+}
+
+.campo input:focus {
+    border-color: var(--verde);
+
+    box-shadow: 0 0 0 3px rgba(82, 107, 82, 0.1);
+}
+
+.boton-login {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+    border-radius: 7px;
+
+    background-color: var(--verde);
+    color: var(--blanco);
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s,
+        transform 0.2s;
+}
+
+.boton-login:hover {
+    background-color: var(--verde-oscuro);
+    transform: translateY(-2px);
+}
+
+.boton-login:active {
+    transform: translateY(0);
+}
+
+.mensaje-login {
+    color: #A34B43;
+    font-size: 13px;
+    text-align: center;
+}
+
+.separador {
+    height: 1px;
+    width: 100%;
+
+    background-color: var(--borde);
+
+    margin: 28px 0 20px;
+}
+
+.texto-registro {
+    color: var(--texto-secundario);
+    font-size: 13px;
+    text-align: center;
+}
+
+.texto-registro a {
+    color: var(--verde);
+    font-weight: bold;
+}
+
+.texto-registro a:hover {
+    color: var(--verde-oscuro);
+}
+
+.texto-inferior {
+    margin-top: 25px;
+
+    color: var(--texto-secundario);
+    font-size: 12px;
+    text-align: center;
+}
+
+@media (max-width: 500px) {
+
+    .encabezado-login {
+        min-height: 70px;
+    }
+
+    .contenedor-login {
+        min-height: calc(100vh - 70px);
+        padding: 25px 15px;
+    }
+
+    .tarjeta-login {
+        padding: 28px 22px;
+    }
+
+    .encabezado-formulario h1 {
+        font-size: 26px;
+    }
+
+}

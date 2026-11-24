@@ -5,34 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Natura | Mi carrito</title>
+    <link rel="stylesheet" href="css/carrito.css">
 </head>
+
 <body>
-    <header>
-        <div class="identidad">
-            <a href="index.html">Natura</a>
-        </div>
-        <nav>
-            <a href="index.html">Seguir comprando</a>
-            <a href="carrito.html">Mi carrito</a>
-        </nav>
-    </header>
-    <main>
-        <h1>Mi carrito</h1>
-        <section id="contenido-carrito">
-            <div id="productos-carrito">
+    <header class="encabezado">
+        <div class="contenedor encabezado-contenido">
+            <div class="identidad">
+                <a href="index.html">Natura</a>
             </div>
-            <aside id="resumen-carrito">
-                <h2>Resumen de compra</h2>
 
-                <p>
-                    Total:
-                    <span id="total-carrito">$0</span>
-                </p>
+            <nav class="navegacion">
+                <a href="index.html">Seguir comprando</a>
+                <a href="carrito.html">Mi carrito</a>
+            </nav>
+        </div>
+    </header>
 
-                <a href="pago.html">Finalizar compra</a>
+    <main class="contenedor contenedor-carrito">
+        <div class="encabezado-pagina">
+            <span class="etiqueta">Tu selección</span>
+            <h1>Mi carrito</h1>
+            <p>Revisá los productos que elegiste antes de finalizar tu compra.</p>
+        </div>
+
+        <section id="contenido-carrito" class="contenido-carrito">
+            <div id="productos-carrito" class="productos-carrito">
+            </div>
+
+            <aside id="resumen-carrito" class="resumen-carrito">
+                <div class="encabezado-resumen">
+                    <span class="etiqueta">Tu pedido</span>
+                    <h2>Resumen de compra</h2>
+                </div>
+
+                <div class="total-carrito">
+                    <span>Total</span>
+                    <strong id="total-carrito">$0</strong>
+                </div>
+
+                <a class="boton-finalizar" href="pago.html">
+                    Finalizar compra
+                </a>
+
+                <a class="enlace-seguir-comprando" href="index.html">
+                    Seguir comprando
+                </a>
             </aside>
         </section>
     </main>
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <span class="logo-pie">Natura</span>
+            <p>Una forma más natural de cuidarte.</p>
+        </div>
+    </footer>
     <script type="module" src="js/carrito/MostrarCarrito.js"></script>
 </body>
 </html>

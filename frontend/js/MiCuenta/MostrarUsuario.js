@@ -1,3 +1,4 @@
+
 import { UsuarioApi } from "../../../back/backend/js/UsuarioApi.js";
 import { DireccionApi } from "../../../back/backend/js/DireccionApi.js";
 import { LocalidadApi } from "../../../back/backend/js/LocalidadApi.js";
@@ -6,68 +7,83 @@ const informacion = document.getElementById("informacion-usuario");
 
 async function mostrarUsuario() {
     informacion.innerHTML = "";
+
     try {
         const usuario = await UsuarioApi.obtenerMiCuenta();
         const direccion = await DireccionApi.obtenerPorIdUsuario(usuario.idUsuario);
         const localidad = await LocalidadApi.obtenerPorId(direccion[0].idLocalidad);
 
-        const nombre = document.createElement("p");
-        nombre.textContent = `Nombre: ${usuario.nombre}`;
+        // Datos personales
+        const datosPersonales = document.createElement("div");
+        datosPersonales.classList.add("datos-personales");
 
-        const apellido = document.createElement("p");
-        apellido.textContent = `Apellido: ${usuario.apellido}`;
+        const tituloDatos = document.createElement("h3");
+        tituloDatos.textContent = "Información personal";
+        tituloDatos.classList.add("titulo-informacion");
 
-        const dni = document.createElement("p");
-        dni.textContent = `DNI: ${usuario.dni}`;
+        const camposPersonales = [
+            ["Nombre", usuario.nombre],
+            ["Apellido", usuario.apellido],
+            ["DNI", usuario.dni],
+            ["Correo electrónico", usuario.email],
+            ["Fecha de nacimiento", usuario.fecha_nacimiento]
+        ];
 
-        const email = document.createElement("p");
-        email.textContent = `Email: ${usuario.email}`;
+        camposPersonales.forEach(([etiqueta, valor]) => {
+            const campo = document.createElement("div");
+            campo.classList.add("campo-informacion");
 
-        const fechaNacimiento = document.createElement("p");
-        fechaNacimiento.textContent =
-            `Fecha de nacimiento: ${usuario.fecha_nacimiento}`;
+            const label = document.createElement("span");
+            label.textContent = etiqueta;
 
-        informacion.append(
-            nombre,
-            apellido,
-            dni,
-            email,
-            fechaNacimiento
-        );
+            const contenido = document.createElement("p");
+            contenido.textContent = valor ?? "-";
+
+            campo.append(label, contenido);
+            datosPersonales.appendChild(campo);
+        });
+
+        datosPersonales.prepend(tituloDatos);
+
+        // Dirección
+        const datosDireccion = document.createElement("div");
+        datosDireccion.classList.add("datos-direccion");
 
         const tituloDireccion = document.createElement("h3");
         tituloDireccion.textContent = "Mi dirección";
+        tituloDireccion.classList.add("titulo-informacion");
 
-        const calle = document.createElement("p");
-        calle.textContent = `Calle: ${direccion[0].calle}`;
+        const camposDireccion = [
+            ["Calle", direccion[0].calle],
+            ["Altura", direccion[0].altura],
+            ["Piso", direccion[0].piso || "-"],
+            ["Departamento", direccion[0].dpto || "-"],
+            ["Código postal", direccion[0].cp],
+            ["Localidad", localidad.nombre]
+        ];
 
-        const altura = document.createElement("p");
-        altura.textContent = `Altura: ${direccion[0].altura}`;
+        camposDireccion.forEach(([etiqueta, valor]) => {
+            const campo = document.createElement("div");
+            campo.classList.add("campo-informacion");
 
-        const piso = document.createElement("p");
-        piso.textContent = `Piso: ${direccion[0].piso || "-"}`;
+            const label = document.createElement("span");
+            label.textContent = etiqueta;
 
-        const dpto = document.createElement("p");
-        dpto.textContent = `Departamento: ${direccion[0].dpto || "-"}`;
+            const contenido = document.createElement("p");
+            contenido.textContent = valor ?? "-";
 
-        const cp = document.createElement("p");
-        cp.textContent = `Código postal: ${direccion[0].cp}`;
+            campo.append(label, contenido);
+            datosDireccion.appendChild(campo);
+        });
 
-        const nombreLocalidad = document.createElement("p");
-        nombreLocalidad.textContent = `Localidad: ${localidad.nombre}`;
+        datosDireccion.prepend(tituloDireccion);
 
-        informacion.append(
-            tituloDireccion,
-            calle,
-            altura,
-            piso,
-            dpto,
-            cp,
-            nombreLocalidad
-        );
+        informacion.append(datosPersonales, datosDireccion);
+
     } catch (error) {
         console.error("Error al obtener los datos:", error);
         informacion.textContent = "No se pudieron cargar tus datos.";
     }
 }
+
 mostrarUsuario();

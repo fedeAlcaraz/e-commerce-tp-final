@@ -4,61 +4,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#FAF9F5">
     <title>Natura | Tienda online</title>
+    <link rel="stylesheet" href="css/inicio.css">
 </head>
 <body>
-    <header>
-        <div class="identidad">
-            <a href="index.html">Natura</a>
-        </div>
-        <nav aria-label="Navegación principal">
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="#categorias">Categorías</a></li>
-                <li><a href="#productos">Productos</a></li>
-            </ul>
-        </nav>
-        <div class="acciones-usuario">
-            <form action="#" method="GET">
-                <label for="busqueda">Buscar productos</label>
-                <input
-                    type="search"
-                    id="busqueda"
-                    name="buscar"
-                    placeholder="¿Qué estás buscando?"
-                >
-                <button type="submit">Buscar</button>
-            </form>
-            <a href="login.html">Iniciar sesión</a>
-            <a href="carrito.html">Carrito</a>
-            <a href="pedidos.html">Pedidos</a>
-            <a href="miCuenta.html">Mi Cuenta</a>
+    <header class="encabezado">
+        <div class="contenedor encabezado-contenido">
+
+            <div class="identidad">
+                <a href="index.html">Natura<span>.</span></a>
+            </div>
+
+            <nav class="navegacion" aria-label="Navegación principal">
+                <ul>
+                    <li><a href="index.html" class="activo">Inicio</a></li>
+                    <li><a href="#categorias">Categorías</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                </ul>
+            </nav>
+
+            <div class="acciones-usuario">
+                <form class="buscador" action="#" method="GET">
+                    <label for="busqueda" class="solo-lectores">
+                        Buscar productos
+                    </label>
+                    <input
+                        type="search"
+                        id="busqueda"
+                        name="buscar"
+                        placeholder="¿Qué estás buscando?"
+                    >
+                    <button type="submit">Buscar</button>
+                </form>
+
+                <div class="enlaces-usuario">
+                    <a href="login.html">Iniciar sesión</a>
+                    <a href="carrito.html">Carrito</a>
+                    <a href="pedidos.html">Pedidos</a>
+                    <a href="miCuenta.html">Mi cuenta</a>
+                </div>
+            </div>
+
         </div>
     </header>
+
     <main>
-        <section id="inicio">
-            <h1>Bienvenido a Natura</h1>
-            <p>
-                Descubrí nuestros productos y encontrá lo que necesitás.
-            </p>
-            <a href="#productos">Explorar productos</a>
-        </section>
-        <section id="categorias">
-            <h2>Categorías</h2>
-            <div id="catalogo-categorias"></div>
-        </section>
-        <section id="lineas">
-            <h2>Nuestras líneas</h2>
-            <div id="catalogo-lineas"></div>
-        </section>
-        <section id="productos">
-            <h2>Nuestros productos</h2>
-            <div id="catalogo-productos">
+
+        <section id="inicio" class="portada">
+            <div class="contenedor portada-contenido">
+
+                <div class="portada-texto">
+                    <span class="etiqueta">CUIDADO NATURAL</span>
+
+                    <h1>
+                        Conectá con lo
+                        <span>natural.</span>
+                    </h1>
+
+                    <p>
+                        Descubrí nuestros productos y encontrá
+                        aquello que necesitás para cuidar de vos.
+                    </p>
+
+                    <a href="#productos" class="boton-principal">
+                        Explorar productos
+                    </a>
+                </div>
+
+                <div class="portada-decoracion" aria-hidden="true">
+                    <div class="circulo-decorativo"></div>
+                    <span>NATURA</span>
+                </div>
+
             </div>
         </section>
+
+        <section id="categorias" class="seccion catalogo">
+            <div class="contenedor">
+
+                <div class="encabezado-seccion">
+                    <span class="etiqueta">EXPLORÁ</span>
+                    <h2>Nuestras categorías</h2>
+                    <p>Encontrá lo que buscás de manera sencilla.</p>
+                </div>
+
+                <div id="catalogo-categorias" class="catalogo-grid"></div>
+
+            </div>
+        </section>
+
+        <section id="lineas" class="seccion seccion-alternativa">
+            <div class="contenedor">
+
+                <div class="encabezado-seccion">
+                    <span class="etiqueta">DESCUBRÍ</span>
+                    <h2>Nuestras líneas</h2>
+                    <p>Conocé las diferentes propuestas de Natura.</p>
+                </div>
+
+                <div id="catalogo-lineas" class="catalogo-grid"></div>
+
+            </div>
+        </section>
+
+        <section id="productos" class="seccion catalogo">
+            <div class="contenedor">
+
+                <div class="encabezado-seccion">
+                    <span class="etiqueta">PARA VOS</span>
+                    <h2>Nuestros productos</h2>
+                    <p>Explorá nuestro catálogo y encontrá tus favoritos.</p>
+                </div>
+
+                <div id="catalogo-productos" class="productos-grid"></div>
+
+            </div>
+        </section>
+
     </main>
+
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <a href="index.html" class="logo-pie">Natura.</a>
+            <p>Un espacio para descubrir y cuidar de vos.</p>
+            <span>© Natura - Tienda online</span>
+        </div>
+    </footer>
+
     <script type="module" src="js/inicio/InicioMostrarProductos.js"></script>
     <script type="module" src="js/inicio/InicioMostrarCategorias.js"></script>
     <script type="module" src="js/inicio/InicioMostrarLineas.js"></script>
+
 </body>
 </html>
