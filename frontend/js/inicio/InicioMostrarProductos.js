@@ -1,10 +1,14 @@
-import { ProductoApi } from "../../back/backend/js/ProductoApi.js";
+import { ProductoApi } from "../../../back/backend/js/ProductoApi.js";
+
 const catalogo = document.getElementById("catalogo-productos");
+
 async function mostrarProductos() {
     catalogo.innerHTML = "";
     try {
         const productos = await ProductoApi.obtenerTodos();
+
         console.log(productos);
+
         productos.forEach(producto => {
             const imagen = `<div class="imagen-placeholder">Sin imagen</div>`;
             const tarjeta = document.createElement("article");
@@ -17,11 +21,15 @@ async function mostrarProductos() {
                     <p class="precio">
                         $${Number(producto.precio).toLocaleString("es-AR")}
                     </p>
-                    <button type="button" data-id="${producto.id}">
-                        Agregar al carrito
+                    <button type="button" data-id="${producto.idProducto}">
+                        Ver producto
                     </button>
                 </div>
             `;
+            const boton = tarjeta.querySelector("button");
+            boton.addEventListener("click", () => {
+                window.location.href = `productoFoco.html?id=${producto.idProducto}`;
+            });
             catalogo.appendChild(tarjeta);
         });
     } catch (error) {

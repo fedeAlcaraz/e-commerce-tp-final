@@ -72,11 +72,6 @@ class Pedido {
                 );
                 $resultado->execute();
             }
-            $sql = "DELETE FROM detalle_carrito
-                    WHERE idCarrito = ?";
-            $resultado = $this->conn->prepare($sql);
-            $resultado->bind_param("i", $idCarrito);
-            $resultado->execute();
             $this->conn->commit();
             return $idPedido;
         } catch (Exception $e) {

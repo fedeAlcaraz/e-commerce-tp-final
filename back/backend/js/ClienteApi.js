@@ -5,6 +5,7 @@ class ClienteApi {
     async request(endpoint, method, datos = null) {
         const response = await fetch(this.baseURL + endpoint, {
             method: method,
+            credentials: "same-origin",
             headers: {
                 "Content-Type": "application/json"
             },

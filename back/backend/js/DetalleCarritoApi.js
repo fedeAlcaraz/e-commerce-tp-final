@@ -2,8 +2,8 @@ import { api } from "../../backend/js/ClienteApi.js";
 
 export class DetalleCarritoApi {
 
-    static obtenerTodos(idCarrito) {
-        return api.request("/carritos/productos?idCarrito=" + idCarrito, "GET");
+    static obtenerTodos() {
+    return api.request("/carritos/productos", "GET");
     }
     static crear(datos) {
         return api.request("/carritos/productos", "POST", datos);

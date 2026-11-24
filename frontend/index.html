@@ -1,13 +1,11 @@
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Natura | Tienda online</title>
 </head>
-
 <body>
     <header>
         <div class="identidad">
@@ -18,8 +16,6 @@
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="#categorias">Categorías</a></li>
                 <li><a href="#productos">Productos</a></li>
-                <li><a href="#ofertas">Ofertas</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
             </ul>
         </nav>
         <div class="acciones-usuario">
@@ -33,8 +29,8 @@
                 >
                 <button type="submit">Buscar</button>
             </form>
-            <a href="#">Mi cuenta</a>
-            <a href="#">Carrito</a>
+            <a href="login.html">Iniciar sesión</a>
+            <a href="carrito.html">Carrito</a>
         </div>
     </header>
     <main>
@@ -46,21 +42,21 @@
             <a href="#productos">Explorar productos</a>
         </section>
         <section id="categorias">
-            <h2>Explorá nuestras categorías</h2>
-            <div class="lista-categorias">
-                <article class="categoria">
-                    <h3>Nombre de categoría</h3>
-                    <a href="#">Ver productos</a>
-                </article>
-            </div>
+            <h2>Categorías</h2>
+            <div id="catalogo-categorias"></div>
+        </section>
+        <section id="lineas">
+            <h2>Nuestras líneas</h2>
+            <div id="catalogo-lineas"></div>
         </section>
         <section id="productos">
             <h2>Nuestros productos</h2>
             <div id="catalogo-productos">
-            <!-- JavaScript insertará los productos aquí -->
             </div>
         </section>
     </main>
-    <script type="module" src="js/InicioMostrarProductos.js"></script>
+    <script type="module" src="js/inicio/InicioMostrarProductos.js"></script>
+    <script type="module" src="js/inicio/InicioMostrarCategorias.js"></script>
+    <script type="module" src="js/inicio/InicioMostrarLineas.js"></script>
 </body>
 </html>
