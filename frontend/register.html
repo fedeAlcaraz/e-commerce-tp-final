@@ -7,9 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Natura | Registro</title>
 </head>
-
 <body>
-
 <header>
     <a href="index.html">Natura</a>
 </header>
@@ -39,6 +37,33 @@
         <div>
             <label for="fecha_nacimiento">Fecha de nacimiento</label>
             <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+        </div>
+        <h2>Dirección</h2>
+        <div>
+            <label for="calle">Calle</label>
+            <input type="text" id="calle" name="calle" required>
+        </div>
+        <div>
+            <label for="altura">Altura</label>
+            <input type="text" id="altura" name="altura" required>
+        </div>
+        <div>
+            <label for="piso">Piso (opcional)</label>
+            <input type="text" id="piso" name="piso">
+        </div>
+        <div>
+            <label for="dpto">Departamento (opcional)</label>
+            <input type="text" id="dpto" name="dpto">
+        </div>
+        <div>
+            <label for="cp">Código postal</label>
+            <input type="text" id="cp" name="cp" required>
+        </div>
+        <div>
+            <label for="idLocalidad">Localidad</label>
+        <select id="idLocalidad" name="idLocalidad" required>
+            <option value="">Seleccioná una localidad</option>
+        </select>
         </div>
         <button type="submit">Registrarme</button>
         <p id="mensaje-registro"></p>

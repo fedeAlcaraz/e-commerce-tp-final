@@ -1,8 +1,8 @@
 RewriteEngine On
 
-RewriteBase /backend/e-commerce-tp-final/
+RewriteBase /hacelonene/e-commerce-tp-final/back/backend/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-RewriteRule ^api(/.*)?$ backend/api.php [QSA,L]
+RewriteRule ^api(/.*)?$ api.php [QSA,L]

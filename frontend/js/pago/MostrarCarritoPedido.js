@@ -6,18 +6,14 @@ const totalPedido = document.getElementById("total-pedido");
 async function mostrarPedido() {
     productosPedido.innerHTML = "";
     totalPedido.textContent = "$0";
-
     try {
         const productos = await DetalleCarritoApi.obtenerTodos();
-
         if (productos.length === 0) {
             productosPedido.textContent = "Tu carrito está vacío.";
             document.querySelector("#formulario-pago button[type='submit']").disabled = true;
             return;
         }
-
         let total = 0;
-
         productos.forEach(producto => {
             const precio = Number(producto.precio);
             const cantidad = Number(producto.cantidad);

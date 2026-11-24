@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi cuenta - Natura</title>
+</head>
+<body>
+<header>
+        <div class="identidad">
+            <a href="index.html">Natura</a>
+        </div>
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#categorias">Categorías</a></li>
+                <li><a href="#productos">Productos</a></li>
+            </ul>
+        </nav>
+        <div class="acciones-usuario">
+            <form action="#" method="GET">
+                <label for="busqueda">Buscar productos</label>
+                <input
+                    type="search"
+                    id="busqueda"
+                    name="buscar"
+                    placeholder="¿Qué estás buscando?"
+                >
+                <button type="submit">Buscar</button>
+            </form>
+            <a href="login.html">Iniciar sesión</a>
+            <a href="carrito.html">Carrito</a>
+            <a href="pedidos.html">Pedidos</a>
+        </div>
+    </header>
+    <main>
+        <h1>Mi cuenta</h1>
+        <section id="datos-usuario">
+            <h2>Mis datos personales</h2>
+
+            <div id="informacion-usuario">
+            </div>
+        </section>
+        <section id="opciones-cuenta">
+            <h2>Mi actividad</h2>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="pedido.html">Mis pedidos</a>
+                    </li>
+                    <li>
+                        <a href="carrito.html">Mi carrito</a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+        <section id="configuracion-cuenta">
+            <h2>Configuración</h2>
+
+            <a href="editarCuenta.html">Editar mis datos</a>
+            <button id="cerrar-sesion">Cerrar sesión</button>
+        </section>
+    </main>
+    <script type="module" src="./js/MiCuenta/MostrarUsuario.js"></script>
+</body>
+</html>

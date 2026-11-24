@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis pedidos - Natura</title>
+</head>
+<body>
+    <header>
+        <div class="identidad">
+            <a href="index.html">Natura</a>
+        </div>
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#categorias">Categorías</a></li>
+                <li><a href="#productos">Productos</a></li>
+            </ul>
+        </nav>
+        <div class="acciones-usuario">
+            <form action="#" method="GET">
+                <label for="busqueda">Buscar productos</label>
+                <input
+                    type="search"
+                    id="busqueda"
+                    name="buscar"
+                    placeholder="¿Qué estás buscando?"
+                >
+                <button type="submit">Buscar</button>
+            </form>
+            <a href="login.html">Iniciar sesión</a>
+            <a href="carrito.html">Carrito</a>
+        </div>
+    </header>
+    <main>
+        <h1>Mis pedidos</h1>
+
+        <section id="lista-pedidos">
+            <h2>Historial de compras</h2>
+
+            <div id="pedidos">
+            </div>
+        </section>
+    </main>
+    <script type="module" src="./js/pedidos/MostrarPedidos.js"></script>
+</body>
+</html>

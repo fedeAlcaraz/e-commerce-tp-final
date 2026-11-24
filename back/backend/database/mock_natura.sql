@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2026 a las 10:01:05
+-- Tiempo de generación: 24-11-2026 a las 15:48:23
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -37,8 +37,16 @@ CREATE TABLE `carrito` (
 --
 
 INSERT INTO `carrito` (`idCarrito`, `idUsuario`) VALUES
-(4, 1),
-(3, 5);
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10);
 
 -- --------------------------------------------------------
 
@@ -78,6 +86,30 @@ CREATE TABLE `detalle_carrito` (
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `detalle_carrito`
+--
+
+INSERT INTO `detalle_carrito` (`idCarrito`, `idProducto`, `cantidad`) VALUES
+(2, 41, 1),
+(3, 44, 2),
+(3, 53, 1),
+(3, 54, 3),
+(4, 42, 1),
+(5, 49, 2),
+(5, 50, 1),
+(6, 45, 2),
+(6, 46, 1),
+(7, 56, 2),
+(7, 58, 1),
+(8, 47, 1),
+(8, 48, 1),
+(9, 55, 2),
+(9, 57, 3),
+(10, 51, 2),
+(10, 52, 2),
+(10, 54, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -96,9 +128,33 @@ CREATE TABLE `detalle_pedido` (
 --
 
 INSERT INTO `detalle_pedido` (`idPedido`, `idProducto`, `cantidad`, `precio_unitario`) VALUES
-(3, 4, 1, 10000.00),
-(3, 6, 2, 15000.00),
-(3, 7, 1, 15000.00);
+(1, 41, 2, 32500.00),
+(1, 44, 1, 14500.00),
+(1, 54, 3, 6500.00),
+(2, 42, 1, 48900.00),
+(2, 48, 1, 29800.00),
+(3, 51, 2, 11900.00),
+(3, 52, 1, 13200.00),
+(3, 53, 2, 8900.00),
+(4, 55, 1, 24500.00),
+(4, 57, 2, 7800.00),
+(5, 43, 1, 27900.00),
+(5, 50, 2, 9800.00),
+(6, 45, 1, 15200.00),
+(6, 46, 1, 18900.00),
+(7, 56, 1, 9200.00),
+(7, 58, 2, 11500.00),
+(8, 47, 1, 21500.00),
+(8, 49, 1, 12500.00),
+(9, 41, 1, 32500.00),
+(9, 55, 2, 24500.00),
+(10, 44, 2, 14500.00),
+(10, 53, 3, 8900.00),
+(11, 52, 2, 13200.00),
+(11, 54, 2, 6500.00),
+(12, 42, 1, 48900.00),
+(12, 43, 1, 27900.00),
+(12, 50, 1, 9800.00);
 
 -- --------------------------------------------------------
 
@@ -122,12 +178,16 @@ CREATE TABLE `direccion` (
 --
 
 INSERT INTO `direccion` (`idDireccion`, `idUsuario`, `calle`, `altura`, `piso`, `dpto`, `cp`, `idLocalidad`) VALUES
-(1, 1, 'San Martin', '125', NULL, NULL, '8000', 1),
-(2, 1, 'Belgrano', '450', '2', 'A', '8000', 1),
-(3, 1, 'Mitre', '780', NULL, NULL, '8000', 1),
-(4, 1, 'San Martin', '999', '1', 'B', '8000', 1),
-(5, 1, 'Belgrano', '450', '2', 'A', '8000', 1),
-(6, 1, 'Mitre', '780', NULL, NULL, '8000', 1);
+(1, 1, 'San Martín', '123', NULL, NULL, '7540', 1),
+(2, 2, 'Avenida Colón', '456', '2', 'B', '8000', 2),
+(3, 3, 'Calle 12', '789', NULL, NULL, '1900', 3),
+(4, 4, 'Avenida Independencia', '321', '1', 'A', '7600', 4),
+(5, 5, 'Belgrano', '654', NULL, NULL, '7000', 5),
+(6, 6, 'Rivadavia', '987', '3', 'C', '7400', 6),
+(7, 7, 'Corrientes', '111', '4', 'D', '1043', 7),
+(8, 8, 'Avenida 59', '222', NULL, NULL, '7630', 8),
+(9, 9, 'Mitre', '333', '1', 'A', '7300', 9),
+(10, 10, 'Moreno', '444', NULL, NULL, '8170', 10);
 
 -- --------------------------------------------------------
 
@@ -186,7 +246,16 @@ CREATE TABLE `localidad` (
 --
 
 INSERT INTO `localidad` (`idLocalidad`, `nombre`) VALUES
-(1, 'suarez');
+(1, 'Coronel Suárez'),
+(2, 'Bahía Blanca'),
+(3, 'La Plata'),
+(4, 'Mar del Plata'),
+(5, 'Tandil'),
+(6, 'Olavarría'),
+(7, 'Buenos Aires'),
+(8, 'Necochea'),
+(9, 'Azul'),
+(10, 'Pigüé');
 
 -- --------------------------------------------------------
 
@@ -207,7 +276,18 @@ CREATE TABLE `pago` (
 --
 
 INSERT INTO `pago` (`idPago`, `idPedido`, `monto`, `medio_pago`, `estado`) VALUES
-(1, 3, 55000.00, 'transferencia', 'aprobado');
+(1, 1, 99000.00, 'transferencia', 'pendiente'),
+(2, 2, 78700.00, 'transferencia', 'aprobado'),
+(3, 3, 54800.00, 'transferencia', 'aprobado'),
+(4, 4, 40100.00, 'efectivo', 'aprobado'),
+(5, 5, 47500.00, 'transferencia', 'rechazado'),
+(6, 6, 34100.00, 'efectivo', 'pendiente'),
+(7, 7, 32200.00, 'transferencia', 'aprobado'),
+(8, 8, 34000.00, 'transferencia', 'aprobado'),
+(9, 9, 81500.00, 'efectivo', 'aprobado'),
+(10, 10, 55700.00, 'efectivo', 'rechazado'),
+(11, 11, 39400.00, 'transferencia', 'aprobado'),
+(12, 12, 86600.00, 'transferencia', 'pendiente');
 
 -- --------------------------------------------------------
 
@@ -228,8 +308,18 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`idPedido`, `idUsuario`, `estado`, `total`, `fecha`) VALUES
-(2, 1, 'pendiente', 0.00, '2026-11-23 04:33:51'),
-(3, 1, 'pagado', 55000.00, '2026-11-23 04:37:15');
+(1, 1, 'pendiente', 99000.00, '2026-11-20 10:30:00'),
+(2, 2, 'pagado', 78700.00, '2026-11-19 14:20:00'),
+(3, 3, 'enviado', 54800.00, '2026-11-17 09:15:00'),
+(4, 4, 'entregado', 40100.00, '2026-11-10 16:45:00'),
+(5, 5, 'cancelado', 47500.00, '2026-11-18 11:00:00'),
+(6, 6, 'pendiente', 34100.00, '2026-11-23 18:30:00'),
+(7, 7, 'pagado', 32200.00, '2026-11-15 12:00:00'),
+(8, 8, 'enviado', 34000.00, '2026-11-16 13:40:00'),
+(9, 9, 'entregado', 81500.00, '2026-11-08 10:00:00'),
+(10, 10, 'cancelado', 55700.00, '2026-11-21 17:10:00'),
+(11, 1, 'pagado', 39400.00, '2026-11-22 15:20:00'),
+(12, 3, 'pendiente', 86600.00, '2026-11-24 08:30:00');
 
 -- --------------------------------------------------------
 
@@ -254,34 +344,24 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idProducto`, `nombre`, `descripcion`, `imagen`, `genero`, `idCategoria`, `idLinea`, `precio`, `stock`) VALUES
-(1, 'fede', NULL, NULL, 'F', NULL, NULL, 3.00, 2),
-(4, 'reptiles', NULL, NULL, 'F', NULL, NULL, 10000.00, 20),
-(5, 'pity', NULL, NULL, 'F', NULL, NULL, 100.00, 1),
-(6, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(7, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(8, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(9, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(10, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(11, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(12, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(13, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(14, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(15, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(16, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(17, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(18, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(19, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(20, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(21, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(23, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 42),
-(24, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(25, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(26, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(27, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(28, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(29, 'Crema hidra', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(30, 'Crema delir', NULL, NULL, 'F', NULL, NULL, 15000.00, 20),
-(31, 'Crema delir', NULL, NULL, 'F', NULL, NULL, 15000.00, 20);
+(41, 'Kaiak Clásico Masculino', 'Fragancia fresca con notas aromáticas y acuáticas.', NULL, 'M', 1, 2, 32500.00, 15),
+(42, 'Essencial Floral', 'Fragancia elegante con notas florales y amaderadas.', NULL, 'F', 1, 6, 48900.00, 8),
+(43, 'Humor Próprio', 'Fragancia juvenil, fresca y divertida para todos los días.', NULL, 'Unisex', 1, 3, 27900.00, 20),
+(44, 'Crema Corporal Tododia Almendras', 'Crema hidratante corporal de textura suave.', NULL, 'Unisex', 2, 4, 14500.00, 25),
+(45, 'Crema Corporal Tododia Frutos Rojos', 'Hidratación diaria con una fragancia frutal.', NULL, 'Unisex', 2, 4, 15200.00, 18),
+(46, 'Aceite Corporal Erva Doce', 'Aceite corporal para el cuidado y la hidratación de la piel.', NULL, 'Unisex', 2, 12, 18900.00, 12),
+(47, 'Gel Limpiador Facial Chronos', 'Gel de limpieza facial para uso diario.', NULL, 'Unisex', 3, 5, 21500.00, 10),
+(48, 'Crema Facial Chronos', 'Crema facial para complementar la rutina de cuidado.', NULL, 'Unisex', 3, 5, 29800.00, 7),
+(49, 'Máscara de Pestañas Faces', 'Máscara para realzar y definir las pestañas.', NULL, 'F', 4, 11, 12500.00, 22),
+(50, 'Labial Faces Rojo', 'Labial de color rojo intenso.', NULL, 'F', 4, 11, 9800.00, 16),
+(51, 'Shampoo Ekos Maracuyá', 'Shampoo para la limpieza y el cuidado diario del cabello.', NULL, 'Unisex', 5, 1, 11900.00, 30),
+(52, 'Acondicionador Ekos Maracuyá', 'Acondicionador para facilitar el peinado.', NULL, 'Unisex', 5, 1, 13200.00, 24),
+(53, 'Jabón Líquido Tododia', 'Jabón líquido para la higiene diaria.', NULL, 'Unisex', 6, 4, 8900.00, 35),
+(54, 'Jabón en Barra Ekos', 'Jabón vegetal para la higiene corporal.', NULL, 'Unisex', 6, 1, 6500.00, 40),
+(55, 'Protector Solar FPS 50', 'Protector solar para el cuidado diario de la piel.', NULL, 'Unisex', 7, 13, 24500.00, 14),
+(56, 'Desodorante Kaiak Aerosol', 'Desodorante con fragancia fresca.', NULL, 'M', 8, 2, 9200.00, 28),
+(57, 'Desodorante Tododia Roll-on', 'Desodorante para uso diario.', NULL, 'Unisex', 8, 4, 7800.00, 32),
+(58, 'Espuma de Afeitar Homem', 'Espuma para facilitar el afeitado.', NULL, 'M', 9, 9, 11500.00, 17);
 
 -- --------------------------------------------------------
 
@@ -315,11 +395,16 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nombre`, `apellido`, `dni`, `email`, `password`, `fecha_nacimiento`) VALUES
-(1, 'Juan', 'Perez', '30111222', 'juan.perez@example.com', '$2y$10$vJ1AaC5XBKLr6uDpZFw7EO1mJitMY.WZdWnF1/NAwwi7PyMvBZagO', '1998-05-12'),
-(2, 'Maria', 'Gomez', '30222333', 'maria.gomez@example.com', '$2y$10$14XrCFhYH4iBNuyWTsj6GeujUaG///v5RAI5Nm5iEatekSQjVGkY.', '2000-08-21'),
-(3, 'Lucas', 'Fernandez', '30333444', 'lucas.fernandez@example.com', '$2y$10$mIfyYb4cOxuk.pmkPbL2OOS1oVR..PildtJGDE2c5SN96PdyYrEBu', '1999-02-15'),
-(4, 'Sofia', 'Rodriguez', '30444555', 'sofia.rodriguez@example.com', '$2y$10$riNf.1o89eIhCyCOy87oG.5tszysW0rU/aH3xY8J5IbKPfh6YiNPG', '2001-11-03'),
-(5, 'Mateo', 'Lopez', '30555666', 'mateo.lopez@example.com', '$2y$10$goW0.lQvksAW7Lzg2KpgY.VUHaU3mCwxvAexgiHRgY2FZTfX2NRAq', '1997-07-29');
+(1, 'Lucía', 'Fernández', '40111222', 'lucia.fernandez@test.com', '$2y$12$fNiz.wYnhyko9rW7Byc1auB8EMo.Aqq78X8mLfDGHuT5G/8dLbWoO', '2001-04-12'),
+(2, 'Mateo', 'González', '40222333', 'mateo.gonzalez@test.com', '$2y$12$fNiz.wYnhyko9rW7Byc1auB8EMo.Aqq78X8mLfDGHuT5G/8dLbWoO', '1999-08-23'),
+(3, 'Camila', 'Rodríguez', '40333444', 'camila.rodriguez@test.com', '$2y$12$fNiz.wYnhyko9rW7Byc1auB8EMo.Aqq78X8mLfDGHuT5G/8dLbWoO', '2003-02-17'),
+(4, 'Tomás', 'Martínez', '40444555', 'tomas.martinez@test.com', '$2y$12$fNiz.wYnhyko9rW7Byc1auB8EMo.Aqq78X8mLfDGHuT5G/8dLbWoO', '1998-11-05'),
+(5, 'Valentina', 'López', '40555666', 'valentina.lopez@test.com', '$2y$12$fNiz.wYnhyko9rW7Byc1auB8EMo.Aqq78X8mLfDGHuT5G/8dLbWoO', '2002-06-30'),
+(6, 'Santiago', 'Pérez', '40666777', 'santiago.perez@test.com', '$2y$12$fNiz.wYnhyko9rW7Byc1auB8EMo.Aqq78X8mLfDGHuT5G/8dLbWoO', '2000-09-14'),
+(7, 'Martina', 'Sánchez', '40777888', 'martina.sanchez@test.com', '$2y$12$fNiz.wYnhyko9rW7Byc1auB8EMo.Aqq78X8mLfDGHuT5G/8dLbWoO', '2004-01-21'),
+(8, 'Joaquín', 'Romero', '40888999', 'joaquin.romero@test.com', '$2y$12$fNiz.wYnhyko9rW7Byc1auB8EMo.Aqq78X8mLfDGHuT5G/8dLbWoO', '1997-12-03'),
+(9, 'Agustina', 'Díaz', '40999111', 'agustina.diaz@test.com', '$2y$12$fNiz.wYnhyko9rW7Byc1auB8EMo.Aqq78X8mLfDGHuT5G/8dLbWoO', '2001-07-19'),
+(10, 'Nicolás', 'Torres', '41000222', 'nicolas.torres@test.com', '$2y$12$fNiz.wYnhyko9rW7Byc1auB8EMo.Aqq78X8mLfDGHuT5G/8dLbWoO', '1999-03-26');
 
 --
 -- Índices para tablas volcadas
@@ -427,7 +512,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
@@ -439,7 +524,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `idDireccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idDireccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `familia_olfativa`
@@ -457,25 +542,25 @@ ALTER TABLE `linea`
 -- AUTO_INCREMENT de la tabla `localidad`
 --
 ALTER TABLE `localidad`
-  MODIFY `idLocalidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idLocalidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `idPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_piel`
@@ -487,7 +572,7 @@ ALTER TABLE `tipo_piel`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

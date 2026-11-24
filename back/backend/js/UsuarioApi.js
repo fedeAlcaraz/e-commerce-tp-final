@@ -8,11 +8,17 @@ export class UsuarioApi {
     static obtenerPorId(id) {
         return api.request("/usuarios/" + id, "GET");
     }
+    static obtenerMiCuenta() {
+        return api.request("/usuarios", "GET");
+    }
     static crear(datos) {
         return api.request("/usuarios", "POST", datos);
     }
     static actualizar(id, datos) {
         return api.request("/usuarios/" + id, "PUT", datos);
+    }
+    static actualizarMiCuenta(datos) {
+        return api.request("/usuarios", "PUT", datos);
     }
     static actualizarPatch(id, datos) {
         return api.request("/usuarios/" + id, "PATCH", datos);

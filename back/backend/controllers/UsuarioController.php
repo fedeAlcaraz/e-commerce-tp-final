@@ -39,7 +39,7 @@
         http_response_code(201);
         echo json_encode([
             "mensaje" => "usuario creado correctamente",
-            "idusuario" => $resultado], JSON_UNESCAPED_UNICODE);
+            "idUsuario" => $resultado], JSON_UNESCAPED_UNICODE);
         exit;
     }
     public function actualizar($id, $datos) {

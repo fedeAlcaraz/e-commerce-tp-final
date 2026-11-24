@@ -24,7 +24,7 @@
             $resultado->bind_param("i",
             $idUsuario);
             $resultado->execute();
-            return $resultado->insert_id;
+            return $this->conn->insert_id;
         }
         public function eliminar($id) {
             $sql = "DELETE FROM carrito WHERE idCarrito = ?";

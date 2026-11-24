@@ -22,7 +22,7 @@
             $resultado->bind_param("s",
             $datos['nombre']);
             $resultado->execute();
-            return $resultado->insert_id;
+            return $this->conn->insert_id;
         }
         public function actualizar($id, $datos) {
             $sql = "UPDATE linea SET nombre = ? WHERE idLinea = ?";

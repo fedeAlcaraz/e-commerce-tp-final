@@ -24,7 +24,7 @@
             $datos['precio'],
             $datos['stock']);
             $resultado->execute();
-            return $resultado->insert_id;
+            return $this->conn->insert_id;
         }
         public function actualizar($id, $datos) {
             $sql = "UPDATE producto SET nombre = ?, precio = ?, stock = ? WHERE idProducto = ?";

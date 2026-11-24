@@ -33,7 +33,7 @@
             $resultado = $this->conn->prepare($sql);
             $resultado->bind_param("iii", $cantidad, $idCarrito, $idProducto);
             $resultado->execute();
-            return $resultado->affected_rows;
+            return $this->conn->insert_id;
         }
         public function eliminar($idCarrito, $idProducto) {
             $sql = "DELETE FROM detalle_carrito

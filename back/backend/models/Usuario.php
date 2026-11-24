@@ -36,7 +36,7 @@
                 $passwordHash,
                 $datos['fecha_nacimiento']);
             $resultado->execute();
-            return $resultado->insert_id;
+            return $this->conn->insert_id;
         }
         public function actualizar($id, $datos) {
             $sql = "UPDATE usuario 

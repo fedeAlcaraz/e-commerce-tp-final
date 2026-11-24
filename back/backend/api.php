@@ -15,9 +15,12 @@ require_once __DIR__ . "/controllers/PagoController.php";
 header("Content-Type: application/json; charset=UTF-8");
 $metodo = $_SERVER["REQUEST_METHOD"];
 $ruta = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-$base = "/backend/e-commerce-tp-final";
+
+$base = "/hacelonene/e-commerce-tp-final/back/backend";
+
 $ruta = substr($ruta, strlen($base));
 $ruta = preg_replace("#^/api/?#", "", $ruta);
+
 $segmentos = explode("/", trim($ruta, "/"));
 $recurso = $segmentos[0] ?? "";
 $id = $segmentos[1] ?? null;
@@ -81,7 +84,16 @@ switch ($metodo) {
                 echo json_encode(["error" => "debes iniciar sesión"]);
                 exit;
             }
-        $controller->obtenerPorIdUsuario($idUsuario);
+            $controller->obtenerPorIdUsuario($idUsuario);
+        } elseif ($controller instanceof UsuarioController) {
+            $idUsuario = $_SESSION['idUsuario'] ?? null;
+            if ($idUsuario === null) {
+                http_response_code(401);
+                echo json_encode(["error" => "debes iniciar sesión"]);
+                exit;
+            }
+            $controller->obtenerPorId($idUsuario);
+            exit;
         } elseif ($controller instanceof PagoController) {
             if ($id !== null) {
                 $controller->obtenerPorId($id);
@@ -104,9 +116,7 @@ switch ($metodo) {
             }
         } elseif ($id !== null) {
         $controller->obtenerPorId($id);
-        } elseif(method_exists($controller,"obtenerPorEmail")) {
-            $controller->obtenerPorEmail($email);
-        }else {
+        } else {
         $controller->obtenerTodos();
         }
         break;
@@ -142,7 +152,18 @@ switch ($metodo) {
         }
         break;
     case "PUT":
+        if ($controller instanceof UsuarioController) {
+        $idUsuario = $_SESSION['idUsuario'] ?? null;
+        if ($idUsuario === null) {
+            http_response_code(401);
+            echo json_encode(["error" => "Debes iniciar sesión"]);
+            exit;
+        }
+        $controller->actualizar($idUsuario, $datos);
+
+        } else {
         $controller->actualizar($id, $datos);
+        }
         break;
     case "PATCH":
         if ($controller instanceof DetalleCarritoController) {

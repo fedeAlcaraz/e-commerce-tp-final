@@ -4,7 +4,6 @@ require_once __DIR__ . "/../models/Carrito.php";
 class AuthController {
     private $usuario;
     private $carrito;
-
     public function __construct() {
         $this->usuario = new Usuario();
         $this->carrito = new Carrito();

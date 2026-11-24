@@ -16,7 +16,7 @@
             $resultado = $this->conn->prepare($sql);
             $resultado->bind_param("i",$id);
             $resultado->execute();
-            return $resultado->get_result()->fetch_all(); //devuelve un array
+            return $resultado->get_result()->fetch_all(MYSQLI_ASSOC); //devuelve un array
         }
         public function obtenerTodos() {
             $sql = "SELECT * FROM direccion";
@@ -35,7 +35,7 @@
             $datos['cp'],
             $datos['idLocalidad']);
             $resultado->execute();
-            return $resultado->insert_id;
+            return $this->conn->insert_id;
         }
         public function actualizar($id, $datos) {
             $sql = "UPDATE direccion SET calle = ?, altura = ?, piso = ?, dpto = ?, cp = ?, idLocalidad = ? WHERE idDireccion = ?";

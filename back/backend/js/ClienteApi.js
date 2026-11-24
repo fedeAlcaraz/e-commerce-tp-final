@@ -18,4 +18,4 @@ class ClienteApi {
         return resultado;
     }
 }
-export const api = new ClienteApi("/backend/e-commerce-tp-final/api");
+export const api = new ClienteApi("/hacelonene/e-commerce-tp-final/back/backend/api");
